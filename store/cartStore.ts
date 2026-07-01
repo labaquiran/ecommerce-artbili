@@ -1,8 +1,8 @@
 import { create } from "zustand";
-import { Product } from "@/utils/types";
+import { CartProduct, Product } from "@/utils/types";
 
 interface CartState {
-  items: Product[];
+  items: CartProduct[];
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   increaseQuantity: (productId: number) => void;
@@ -11,7 +11,7 @@ interface CartState {
   calcTotalPrice: () => number;
 }
 
-const useCart = create<CartState>()((set, get) => ({
+export const useCartStore = create<CartState>()((set, get) => ({
   items: [],
 
   addToCart: (product) =>

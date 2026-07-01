@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import RootNavbar from "@/components/root-navbar";
+import AuthNavbar from "@/components/auth-navbar";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
@@ -7,14 +7,15 @@ export const metadata: Metadata = {
   description: "Ecommerce platform for artists to sell their work",
 };
 
-export default function RootLayout({
+export default function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body>{children}</body>
-    </html>
+    <>
+      <AuthNavbar />
+      {children}
+    </>
   );
 }
