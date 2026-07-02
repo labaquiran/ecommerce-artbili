@@ -9,11 +9,15 @@ export default function Cart() {
     items: cartItems,
     totalPrice,
     increaseQuantity,
+    decreaseQuantity,
+    removeFromCart,
   } = useCartStore(
     useShallow((state) => ({
       items: state.items,
       totalPrice: state.calcTotalPrice(),
       increaseQuantity: state.increaseQuantity,
+      decreaseQuantity: state.decreaseQuantity,
+      removeFromCart: state.removeFromCart,
     })),
   );
 
@@ -24,7 +28,14 @@ export default function Cart() {
           <p>Your cart is empty.</p>
         </div>
       )}
-      {cartItems.length > 0 && <CartItemsList items={cartItems} />}
+      {cartItems.length > 0 && (
+        <CartItemsList
+          items={cartItems}
+          removeFromCart={removeFromCart}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+        />
+      )}
 
       {totalPrice > 0 && (
         <div className="bg-white p-4 flex items-center justify-center flex-col gap-2">

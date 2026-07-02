@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import RootNavbar from "@/components/root-navbar";
 import "@/app/globals.css";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Artbili",
@@ -14,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
