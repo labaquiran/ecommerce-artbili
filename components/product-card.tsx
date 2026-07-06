@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Product } from "@/utils/types";
 import { useState } from "react";
-import { useCartStore } from "@/store/cartStore";
 import productPlaceholder from "@/public/product-placeholder.jpg";
+import AddToCartBtn from "@//components/add-to-cart-btn";
 
 export default function ProductCard({ id, image_url, name, price }: Product) {
   const [src, setSrc] = useState(image_url || productPlaceholder);
-  const addToCart = useCartStore((s) => s.addToCart);
 
   return (
     <div className="bg-white p-4 shadow-md relative">
@@ -22,16 +22,18 @@ export default function ProductCard({ id, image_url, name, price }: Product) {
       />
       <div className="flex justify-between">
         <div>
-          <h2 className="text-xl font-bold">{name}</h2>
+          <Link href={`/${id}`} className="text-xl font-bold">
+            {name}
+          </Link>
           <p className="text-2xl font-bold">{price}</p>
         </div>
         <div className="flex items-end">
-          <button
-            onClick={addToCart.bind(null, { id, image_url, name, price })}
-            className="bg-blue-500 text-white p-1 rounded-full cursor-pointer whitespace-nowrap"
-          >
-            Add to cart
-          </button>
+          <AddToCartBtn
+            id={id}
+            image_url={image_url}
+            name={name}
+            price={price}
+          />
         </div>
       </div>
     </div>
