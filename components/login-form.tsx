@@ -2,6 +2,7 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
+import { signInWithEmail } from "@/actions/auth";
 
 type Inputs = {
   email: string;
@@ -12,13 +13,13 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-
-  console.log(watch("email")); // watch input value by passing the name of it
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const { email, password } = data;
+    signInWithEmail(email, password);
+  };
 
   return (
     <form
@@ -31,7 +32,7 @@ export default function LoginForm() {
       <input
         type="email"
         className="border"
-        {...(register("email"), { required: true })}
+        {...register("email", { required: true })}
       />
 
       <label htmlFor="password">password</label>

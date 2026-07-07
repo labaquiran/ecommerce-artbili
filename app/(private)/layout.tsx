@@ -1,4 +1,4 @@
-import RootNavbar from "@/components/root-navbar";
+import Header from "@/components/header";
 
 export default function PrivateLayout({
   children,
@@ -7,7 +7,7 @@ export default function PrivateLayout({
 }>) {
   return (
     <>
-      <RootNavbar />
+      <Header />
       {children}
     </>
   );

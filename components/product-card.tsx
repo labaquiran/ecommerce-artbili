@@ -7,7 +7,13 @@ import { useState } from "react";
 import productPlaceholder from "@/public/product-placeholder.jpg";
 import AddToCartBtn from "@//components/add-to-cart-btn";
 
-export default function ProductCard({ id, image_url, name, price }: Product) {
+interface ProductCartProps {
+  product: Product;
+  isLoggedIn: boolean;
+}
+
+export default function ProductCard({ product, isLoggedIn }: ProductCartProps) {
+  const { id, name, image_url, price } = product;
   const [src, setSrc] = useState(image_url || productPlaceholder);
 
   return (
@@ -27,14 +33,16 @@ export default function ProductCard({ id, image_url, name, price }: Product) {
           </Link>
           <p className="text-2xl font-bold">{price}</p>
         </div>
-        <div className="flex items-end">
-          <AddToCartBtn
-            id={id}
-            image_url={image_url}
-            name={name}
-            price={price}
-          />
-        </div>
+        {isLoggedIn && (
+          <div className="flex items-end">
+            <AddToCartBtn
+              id={id}
+              image_url={image_url}
+              name={name}
+              price={price}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -30,7 +30,6 @@ export default function SignUpForm() {
   }
 
   const onSubmit: SubmitHandler<Inputs> = ({ name, email, password }) => {
-    console.log(name, email, password);
     signUpNewUser(email, password);
   };
 

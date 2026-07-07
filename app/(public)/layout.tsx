@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import RootNavbar from "@/components/root-navbar";
+import Header from "@/components/header";
 import "@/app/globals.css";
 
 export default function PublicLayout({
@@ -9,7 +9,7 @@ export default function PublicLayout({
 }>) {
   return (
     <>
-      <RootNavbar />
+      <Header />
       {children}
     </>
   );
